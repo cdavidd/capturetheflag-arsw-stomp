@@ -1,0 +1,200 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Capture The Flag</title>
+    <!--JQUERY-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+   
+
+    <!-- Scripts-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
+    <script src="js/pagina/verificacion.js"></script>
+    <script src="js/pagina/apiClient.js"></script>
+    <script src="js/pagina/app.js"></script>
+    <script src="js/pagina/perfi.js"></script>
+    <script src="js/pagina/salas.js"></script>
+
+    <!-- Nuestro css-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/home.css"
+      th:href="@{/css/home.css}"
+    />
+
+  </head>
+  <body onload="verificationModule.check_cookie(); perfilModule.init()">
+    <ul class="nav nav-pills nav-justified">
+        <li class="nav-item">
+          <a id="inicio-perfil" class="nav-link" data-toggle="tab" href="#Perfil" onclick="perfilModule.partidasJugadas()">Perfil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#Salas" onclick="salasModule.init(1)">Salas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#Crear" onclick="salasModule.init(1)">Crear</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#Instrucciones" onclick="">Instrucciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#" onclick="perfilModule.cerrarSesion()">Cerrar sesion</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane fade" id="Perfil">
+          <div class="row">
+            <div id = "portada-perfil" class="column left">
+              <h1></h1>
+              <div class="modal-personaje">
+                <img src="img/prueba.gif" class="img-fluid" alt="Responsive image">
+              </div>
+            </div>
+            <div id="tablas" class="column right">
+                <div id="datos-promedio" class="table-responsive">
+                  <table id="tabla-estadisticas-jugador" class="table table-dark">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">Victorias</th>
+                        <th scope="col">Muertes</th>
+                        <th scope="col">Kills</th>
+                        <th scope="col">% Victorias</th>
+                      </tr>
+                  </thead>
+                  <tbody></tbody>
+                  </table>
+                </div>
+                <br>
+                <div id= "datos-partida" class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
+                  <table id="tabla-partidas-jugador" class="table table-dark">
+                      <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">Partida</th>
+                            <th scope="col">Puntos</th>
+                            <th scope="col">Top</th>
+                            <th scope="col">Muertes</th>
+                            <th scope="col">Asesinatos</th>
+                            <th scope="col">Fecha</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                  </table>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade table-responsive table-wrapper-scroll-y my-custom-scrollbar-sala" id="Salas">
+            <table id="tabla-salas" class="table table-dark">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Sala</th>
+                    <th scope="col">Participantes</th>
+                    <th scope="col">Unirse</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+              </table>
+        </div>
+        
+        <div class="tab-pane fade" id="Crear">
+            <div class="modal-dialog text-center">
+                <div class="col-sm-8 main-section">
+                  <div class="modal-content">
+                    <form class="col-40" action="/sala.html">
+                      <div id="zona-datos" >
+                          <div class="form-group" id="sala-name">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Nombre Partida"
+                                id="nombre-sala"
+                              />
+                           </div>
+                      </div>
+                      <div id="zona-mapa">
+                          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"  data-interval="false">
+                              <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                              </ol>
+                              <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                  <img src="img/mapa.webp" class="d-block w-100" alt="...">
+                                </div>
+                              </div>
+                              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                              </a>
+                              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                              </a>
+                            </div>
+                      </div>
+                      <div class="col-12 forgot" >
+                        <a class="btn btn-primary"  onclick="salasModule.createSalas($('#nombre-sala').val())" >Crear</a>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="tab-pane fade" id="Instrucciones">
+            <center><h1>Instrucciones Capture The Flag</h1>
+               <h3>Objetivo</h3>
+                El objetivo del juego consiste en obtener la mayor cantidad de puntos durante el transcurso de la partida, para obtener puntos se debe tomar la bandera y cada segundo se sumara un punto al score. 
+                Cada jugador cuenta con 100 puntos de vida inicialmente, y cuenta con un poder que disminuye 20 puntos de vida cuando impacta a otro jugador. 
+
+               <h3>Controles</h3>
+                Salto: w <br>
+                Mover izquierda: a <br>
+                Mover derecha: d <br>
+                Disparo: p 
+
+                <h2>Interfaz del juego</h2>
+
+                <h3>Ventana de estadisticas</h3>
+                <img src="img/Manual/estadisticas.PNG" width="700px" height="400px">
+              
+                <br>
+                En esta ventana se muestran todos los datos recoletados de las partidas del jugador, como victorias, derrotas, kills, muertes etc. Tambien nos brinda informacion sobre el desemepeno del jugador 
+                en general, dandonos un porcentaje de victorias sobre el total de muertes. 
+
+                <h3>Ventana de salas</h3>
+                <img src="img/Manual/salas.PNG" width="800px" height="400px">
+              
+                <br>
+                En esta ventana se muestran las salas disponibles a las que el jugador se puede unir. 
+               
+                <h3>Ventana de crear</h3>
+                <img src="img/Manual/partida.PNG" width="700px" height="400px">
+
+                <br>
+                En esta ventana el jugador puede crear una partida, elegiendo el mapa que considere. 
+                <br>
+                <img src="img/Manual/partida2.PNG" width="700px" height="400px">
+
+                <br>
+                Finalmente, se debe elegir un skin o se tendra el color verde por defecto para nuestro personaje
+              </center>
+        </div>
+
+      </div>
+
+    </div>
+  </body>
+</html>

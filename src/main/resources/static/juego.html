@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Capture The Flag</title>
+    <script src="js/pagina/apiClient.js"></script>
+    <script src="js/pagina/verificacion.js"></script>
+    <script src="js/pagina/app.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <!-- JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- Nuestro css-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/juego.css"
+      th:href="@{/css/juego.css}"
+    />
+  </head>
+  <!--   <h1>Capture The Flag</h1> -->
+  <body onload="partidaModulo.init();verificationModule.check_cookie()">
+    <div class="row">
+      <div id="juego" class="column left">
+        <div class="row">
+          <div class="column left">
+            <img class="column left" id="heart" src="img/heart.webp" />
+            <img class="imagen" id="mira" src="img/mira.webp" />
+            <img class="imagen" id="fantasma" src="img/deaths.webp" />
+            <img class="imagen" id="bandera" src="img/deaths.webp" />
+          </div>
+          <div class="column right">
+            <h1 id="vida"></h1>
+            <h1 id="kills"></h1>
+            <h1 id="muertes"></h1>
+            <h1 id="puntos"></h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="column right">
+        <canvas id="canvas"> </canvas>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModalCenter"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">
+              Puntuacion
+            </h5>
+          </div>
+          <div class="modal-body">
+            <table id="tabla-ganador" class="table table-dark">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Nick</th>
+                  <th scope="col">Puntos</th>
+                  <th scope="col">Kills</th>
+                  <th scope="col">Muertes</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+              onclick="vistahtmlModule.redireccion()"
+            >
+              Home
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/juego/conexionPartida.js"></script>
+    <script src="js/juego/motor.js"></script>
+    <script src="js/juego/vista.js"></script>
+    <script src="js/juego/Controlador.js"></script>
+    <script src="js/juego/mapa.js"></script>
+    <script src="js/juego/main.js"></script>
+    <script src="js/juego/vistahtml.js"></script>
+  
+  </body>
+</html>

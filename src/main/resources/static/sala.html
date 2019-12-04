@@ -1,0 +1,129 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Capture The Flag</title>
+
+    <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Scripts-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
+    <!-- Nuestro css-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/sala.css"
+      th:href="@{/css/sala.css}"
+    />
+  </head>
+  <body onload="salasModule.init(0);verificationModule.check_cookie()">
+    <div class="row">
+      <div class="column left">
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Aspecto
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a
+              class="dropdown-item"
+              href="#"
+              onclick="salasModule.personaje('amarillo-der')"
+              style="color: rgb(231, 218, 39)"
+            >
+              Amarillo
+            </a>
+            <a
+              class="dropdown-item"
+              href="#"
+              onclick="salasModule.personaje('verde-der')"
+              style="color: green;"
+            >
+              Verde
+            </a>
+            <a
+              class="dropdown-item"
+              href="#"
+              onclick="salasModule.personaje('rojo-der')"
+              style="color: red;"
+            >
+              Rojo
+            </a>
+            <a
+              class="dropdown-item"
+              href="#"
+              onclick="salasModule.personaje('rosado-der')"
+              style="color: rgb(221, 169, 178);"
+            >
+              Rosado
+            </a>
+            <a
+              class="dropdown-item"
+              href="#"
+              onclick="salasModule.personaje('agua-der')"
+              style="color: rgb(3, 219, 219);"
+            >
+              Azul
+            </a>
+          </div>
+        </div>
+
+        <br />
+        <div id="personaje"></div>
+        <br />
+
+        <table id="tabla-participantes" class="table table-dark">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Nombre</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <a class="btn btn-primary" href="/juego.html">Jugar</a>
+      </div>
+      <div class="column right">
+        <img
+          src="img/mapa.webp"
+          class="img-fluid imagen"
+          alt="Responsive image"
+        />
+      </div>
+    </div>
+  </body>
+  <!--JQUERY-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--App-->
+  <script src="js/pagina/verificacion.js"></script>
+  <script src="js/pagina/app.js"></script>
+  <script src="js/pagina/salas.js"></script>
+</html>

@@ -1,0 +1,70 @@
+body {
+  /*no se repita/ centrado h/ centrado v/ tamaño se ajuste*/
+  background: url(../img/fondo1.webp) no-repeat center center fixed;
+  /*ripo portada/ */
+  background-size: cover;
+}
+
+.main-section {
+  margin: 0 auto;
+  margin-top: 25%;
+  padding: 0;
+}
+
+.modal-content {
+  background-color: #3b4652;
+  opacity: 0.9;
+  padding: 0px 20px;
+  box-shadow: 0px 0px 3px #848484;
+  border-radius: 20px;
+}
+
+.user-img {
+  margin-top: -50px;
+  margin-bottom: 35px;
+}
+
+.user-img img {
+  width: 100px;
+  height: 100px;
+  box-shadow: 0px 0px 3px #848484;
+  border-radius: 50%;
+}
+
+.form-group input {
+  height: 42px;
+  font-size: 18px;
+  border: 0;
+  padding-left: 50px;
+  border-radius: 20px;
+}
+
+.form-group::before {
+  font-family: "FontAwesome";
+  position: absolute;
+  left: 25px;
+  font-size: 22px;
+  padding: 4px;
+}
+
+.form-group#user-group::before {
+  content: "\f11b";
+}
+.form-group#contrasena-group::before {
+  content: "\f023";
+}
+.form-group#nick-group::before {
+  content: "\f11b";
+}
+button {
+  width: 60%;
+  margin: 5px 0 25px;
+}
+
+.forgot {
+  padding: 5px 0;
+}
+
+.forgot a {
+  color: white;
+}
